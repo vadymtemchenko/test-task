@@ -1,0 +1,60 @@
+<input  ng-hide="addBlock" class="new_record btn" type="button" value="add new record" ng-click="addBlock = true">
+<table ng-show="addBlock">
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Address</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input ng-model="store.newRecord.name"></td>
+			<td><input ng-model="store.newRecord.phone"></td>
+			<td><input ng-model="store.newRecord.address"></td>
+			<td><input type="button" value="add" ng-click="store.updateRecord()"></td>
+			<td><input type="button" value="cancel" ng-click="addBlock = false"></td>
+		</tr>
+	</tbody>
+</table>
+
+<div class="filters">filters:</div>
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Address</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><input ng-model="store.filters.name" ng-change="store.filterRecords()"></td>
+			<td><input ng-model="store.filters.phone" ng-change="store.filterRecords()"></td>
+			<td><input ng-model="store.filters.address" ng-change="store.filterRecords()"></td>
+		</tr>
+	</tbody>
+</table>
+
+<table>
+	<thead>
+		<tr>
+			<th>Name</th>
+			<th>Phone</th>
+			<th>Address</th>
+			<th></th>
+			<th></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr ng-repeat="d in store.filtered | orderBy:'name'">
+			<td><input ng-model="d.name"></td>
+			<td><input ng-model="d.phone"></td>
+			<td><input ng-model="d.address"></td>
+			<td><input type="button" value="update" ng-click="store.updateRecord(d.id)"></td>
+			<td><input type="button" value="delete" ng-click="store.deleteRecord(d.id)"></td>
+		</tr>
+	</tbody>
+</table>
